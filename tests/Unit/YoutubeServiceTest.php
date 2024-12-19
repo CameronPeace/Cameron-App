@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class YoutubeServiceTest extends TestCase
 {
+
     public function testGetChannelId()
     {
         $handle = 'Bushy';
@@ -21,7 +22,7 @@ class YoutubeServiceTest extends TestCase
 
         $mock->method('requestChannelData')->willReturn($return);
 
-        $service = new ApiService($mock);
+        $service = new YoutubeService($mock);
 
         $returnedChannel = $service->getChannelId($handle);
 
