@@ -19,25 +19,24 @@ class PinCodesService
 
         // create an array of integers between the desired min and max.
         $numbers = range($minLength, $maxLength);
+        $attempts = 0;
 
-        // iterate through our total until we have the desired amount of codes.
-        for ($i = 0; $i < $total; $i++) {
+        while (count($batch) < $total) {
+
             // select an random index for our code length.
             $index = array_rand($numbers, 1);
             $pinCode = null;
-            $attempts = 0;
-            // start populating our batch with unique values until total is met.
-            while (in_array($pinCode, $batch) || $pinCode === null) {
 
-                // if we cannot create a unique code in the set amount of tries exit the loop.
-                if ($attempts === 10) {
-                    break;
-                }
-                $pinCode = $this->generateSingleCode($numbers[$index]);
-                $attempts++;
+            if ($attempts >= $total * 5) {
+                break;
             }
 
-            $batch[] = $pinCode;
+            $pinCode = $this->generateSingleCode($numbers[$index]);
+
+            if (!in_array($pinCode, $batch)) {
+                $batch[] = $pinCode;
+            }
+            $attempts++;
         }
 
         return $batch;
@@ -52,6 +51,8 @@ class PinCodesService
      */
     public function generateSingleCode(int $codeLength)
     {
+
+        \Log::info($codeLength);
         $code = [];
 
         // Create each int individually so we can have zeros.
