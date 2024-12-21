@@ -52,7 +52,6 @@ class PinCodesService
     public function generateSingleCode(int $codeLength)
     {
 
-        \Log::info($codeLength);
         $code = [];
 
         // Create each int individually so we can have zeros.
