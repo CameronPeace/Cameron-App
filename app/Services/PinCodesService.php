@@ -36,6 +36,7 @@ class PinCodesService
             if (!in_array($pinCode, $batch)) {
                 $batch[] = $pinCode;
             }
+            
             $attempts++;
         }
 
