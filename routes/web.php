@@ -34,6 +34,10 @@ Route::get('/theater', function () {
     return Inertia::render('Theater');
 })->middleware(['auth', 'verified'])->name('theater');
 
+Route::get('/social', function () {
+    return Inertia::render('Social');
+})->middleware(['auth', 'verified'])->name('social');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -27,6 +27,9 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('theater')} active={route().current('theater')}>
                                     Top Theaters
                                 </NavLink>
+                                <NavLink href={route('social')} active={route().current('social')}>
+                                    Social Feed
+                                </NavLink>
                             </div>
                         </div>
 
@@ -100,6 +103,9 @@ export default function Authenticated({ user, header, children }) {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('theater')} active={route().current('theater')}>
                             Top Theaters
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('social')} active={route().current('social')}>
+                            Social Feed
                         </ResponsiveNavLink>
                     </div>
 

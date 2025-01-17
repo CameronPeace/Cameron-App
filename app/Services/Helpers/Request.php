@@ -31,12 +31,12 @@ abstract class Request
      *
      * @return array
      */
-    public function call(string $method, string $path, array $params = array()): array
+    public function call(string $method, string $path, array $params = array(), bool $useQueryString = false): array
     {
         try {
             $url = $this->getRequestUrl($path);
 
-            $guzzleSettings = $this->getRequestSettings($method, $params);
+            $guzzleSettings = $this->getRequestSettings($method, $params, $useQueryString);
 
             $guzzleResponse = $this->client->request($method, $url, $guzzleSettings);
 
@@ -47,12 +47,14 @@ abstract class Request
 
             return $response;
         } catch (ClientException $e) {
+            \Log::error($e);
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
-            
             return ['status' => false, 'message' => $response['message'] ?? $response['error'] ?? 'Error' ];
         } catch (GuzzleException $e) {
             \Log::error($e);
             return ['status' => false, 'message' => $e->getMessage()];
+        } catch (\Exception $e) {
+            \Log::error($e);
         }
     }
 
@@ -64,7 +66,7 @@ abstract class Request
      *
      * @return array
      */
-    protected function getRequestSettings(string $method, array $params = array()): array
+    protected function getRequestSettings(string $method, array $params = array(), bool $useQueryString = false): array
     {
         $guzzleSettings = array(
             'connect_timeout' => 60,
@@ -76,7 +78,7 @@ abstract class Request
         );
 
         // Add the query parameters or message body
-        if (strtoupper($method) === 'GET') {
+        if (strtoupper($method) === 'GET' || $useQueryString === true) {
             $guzzleSettings['query'] = $params;
         } else {
             $guzzleSettings['json'] = $params;
