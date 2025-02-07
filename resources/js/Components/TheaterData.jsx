@@ -193,7 +193,7 @@ export const TheaterData = () => {
                                             <td className="px-6 py-4">
                                                 {theater.theater_street} {theater.theater_city} {theater.theater_state} {theater.theater_zip5}
                                             </td>
-                                            <td className="px-6 py-4 text-center">${theater.total_theater_sales.toFixed(2)}</td>
+                                            <td className="px-6 py-4 text-center">${Number.parseFloat(theater.total_theater_sales).toFixed(2)}</td>
                                         </tr>
                                     );
                                 })}
