@@ -63,6 +63,7 @@ return [
 
     'open_ai_secret' => env('OPEN_AI_API_SECRET'),
 
+    'youtube_api_key' => env('YOUTUBE_API_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
