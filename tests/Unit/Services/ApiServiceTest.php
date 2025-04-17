@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Services;
 
 use App\Exceptions\ApiServiceException;
 use App\Services\ApiService;
