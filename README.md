@@ -2,6 +2,7 @@
 A laravel based application displaying various projects and features.
 
 ## Spinning Up
+(These steps are outdated but still work and will be updated soon)
 To setup locally please follow the steps below. You will need docker installed and running.
 These steps should be followed in your desired terminal.
 1. In the root of the project directory, copy the contents of the `.env.example` file and populate the `DB_USERNAME` and `DB_PASSWORD` values with your desired local db credentials. AS well as the `OPEN_AI_API_SECRET` key.
